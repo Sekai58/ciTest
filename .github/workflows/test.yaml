@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    permissions: write-all
     runs-on: ubuntu-latest  # You can choose a different runner if needed
 
     steps:
@@ -31,6 +32,25 @@ jobs:
     - name: Build React App
       run: npm run build
 
+    - name: Delete Old Artifacts
+      uses: actions/github-script@v6
+      id: artifact
+      with:
+        script: |
+          const res = await github.rest.actions.listArtifactsForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+          })
+
+          res.data.artifacts
+            .forEach(({ id }) => {
+              github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: id,
+              })
+            })
+
     - name: Create Artifact
       uses: actions/upload-artifact@v2
       with:
@@ -42,12 +62,3 @@ jobs:
       with:
         name: build-artifact
         path: artifacts
-
-    - name: Create ZIP Archive
-      run: zip -r my-artifact.zip . -i /home/runner/work/githubActionsTest/githubActionsTest/artifact
-
-    - name: Upload ZIP Archive
-      uses: actions/upload-artifact@v2
-      with:
-        name: build-artifact-zip
-        path: build-artifact.zip
