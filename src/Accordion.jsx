@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import './Accordion.css'
 
 // type AccordionProps = {
 //     title: string;
@@ -7,13 +8,23 @@ import React from "react";
 const Accordion = (props) => {
 
     const {title, children} = props;
+    const [show, setShow] = useState(false);
+
+    const onAccordionClick = () => {
+        setShow(!show);
+    }
 
     return (
         <div className="accordion">
-            <h3 className="accordion-title">{title}</h3>
-            <div className="accordion-content">
-                {children}
+            <div className="accordion-title">
+                <h3>{title}</h3>
+                <button onClick={() => onAccordionClick()}>{!show ? 'Show' : 'Hide'}</button>
             </div>
+            {show && (
+                <div>
+                    {children}
+                </div>
+            )}
         </div>
     );
 }
