@@ -24,6 +24,22 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+  display:
+    name: Display env variable
+    runs-on: ubuntu-latest
+    env:
+      PORT: 7000
+      platform: AWS
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Display env variable
+        run: |
+          echo "The platform is ${env.platform}"
+          echo "The port is $PORT"
         
   build:
     permissions: write-all
