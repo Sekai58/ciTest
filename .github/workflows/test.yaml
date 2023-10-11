@@ -3,7 +3,7 @@ name: Build React App
 on:
   push:
     branches:
-      - master # Change to the main branch or your default branch
+      - master 
 
 jobs:
   test:
