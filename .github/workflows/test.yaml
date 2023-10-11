@@ -33,6 +33,7 @@ jobs:
     env:
       PORT: 7000
       platform: AWS
+      key: ${{secrets.key}}
 
     steps:
       - name: Checkout code
@@ -42,6 +43,7 @@ jobs:
         run: |
           echo "The platform is ${{env.platform}}"
           echo "The port is $PORT"
+          echo "Secret key $key"
         
   build:
     permissions: write-all
