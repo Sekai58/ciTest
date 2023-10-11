@@ -25,7 +25,7 @@ jobs:
       - name: Run My Custom Action
         run: |
           ls ./src/dict
-        uses: ./src/dict/
+        # uses: ./src/dict/
 
 
       - name: Run tests
