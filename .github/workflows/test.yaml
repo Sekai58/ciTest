@@ -22,10 +22,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run My Custom Action
-        uses: ./src/dict
-
-
       - name: Run tests
         run: npm test
         
