@@ -1,0 +1,6 @@
+name: "Testing custom actions"  
+
+customaction:
+  runs:
+    using: "node18"
+    main: "dict/action.ts"
