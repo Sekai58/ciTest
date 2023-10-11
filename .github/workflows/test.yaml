@@ -38,7 +38,7 @@ jobs:
 
       - name: Display env variable
         run: |
-          echo "The platform is ${env.platform}"
+          echo "The platform is ${{env.platform}}"
           echo "The port is $PORT"
         
   build:
