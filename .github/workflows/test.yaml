@@ -103,8 +103,8 @@ jobs:
         path: artifacts
   
   docker_build:
-  runs-on: ubuntu-latest
-  steps:
+    runs-on: ubuntu-latest
+    steps:
     - name: Checkout
       uses: actions/checkout@v4
     
